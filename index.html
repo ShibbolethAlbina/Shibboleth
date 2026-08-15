@@ -38,7 +38,7 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2); /* Borde sutil para resaltar del fondo */
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         h1 { font-size: 1.2rem; margin-bottom: 20px; }
@@ -50,7 +50,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: rgba(31, 31, 31, 0.85); /* Fondo semitransparente para ver el fondo */
+            background: rgba(31, 31, 31, 0.85);
             text-align: center;
             padding: 14px;
             margin-bottom: 12px;
@@ -59,12 +59,18 @@
             font-weight: bold;
             border: 1px solid #333;
             transition: 0.2s;
-            backdrop-filter: blur(4px); /* Efecto cristal borroso */
+            backdrop-filter: blur(4px);
         }
         .link-btn:hover { background: rgba(51, 51, 51, 0.95); }
 
         /* --- COLORES NEÓN PERSONALIZADOS --- */
         
+        /* TikTok: Blanco Neón */
+        .btn-tk {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
         /* YouTube: Rojo Neón */
         .btn-yt {
             color: #ff0055;
@@ -86,17 +92,27 @@
 </head>
 <body>
 
-<img src="Perfil.jpg" class="profile-img" alt="Foto de perfil">
+<img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
 <h1>Shibboleth</h1>
 
     <div class="links-container">
-        <a href="https://www.youtube.com/@Shibboleth-117" target="_blank" class="link-btn btn-yt">
+        <!-- TikTok (Link corregido con https://www.) -->
+        <a href="https://www.tiktok.com/@shibboleth117" target="_blank" rel="noopener noreferrer" class="link-btn btn-tk">
+            <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@Shibboleth-117" target="_blank" rel="noopener noreferrer" class="link-btn btn-yt">
             <i class="fa-brands fa-youtube"></i> YouTube
         </a>
-        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw=" target="_blank" class="link-btn btn-ig">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw=" target="_blank" rel="noopener noreferrer" class="link-btn btn-ig">
             <i class="fa-brands fa-instagram"></i> Instagram
         </a>
-        <a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" class="link-btn btn-fb">
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" rel="noopener noreferrer" class="link-btn btn-fb">
             <i class="fa-brands fa-facebook"></i> Facebook
         </a>
     </div>
