@@ -26,10 +26,11 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
-            background-color: #000; /* Fondo de respaldo por si el video tarda en cargar */
+            /* Si el video o la imagen fallan, se verá este color de respaldo */
+            background-color: #000;
         }
 
-        /* --- VIDEO DE FONDO --- */
+        /* --- VIDEO DE FONDO CON IMAGEN DE PORTADA --- */
         .bg-video {
             position: fixed;
             top: 50%;
@@ -179,8 +180,8 @@
 </head>
 <body>
 
-    <!-- Video de fondo en bucle (muted y playsinline son obligatorios para móviles) -->
-    <video autoplay muted loop playsinline class="bg-video">
+    <!-- Video de fondo con la imagen de portada integrada -->
+    <video autoplay muted loop playsinline poster="Fondo.jpg" class="bg-video">
         <source src="Fondo.mp4" type="video/mp4">
         Tu navegador no soporta videos.
     </video>
@@ -223,9 +224,9 @@
         </a>
 
         <!-- Facebook -->
-        <p><a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" rel="noopener noreferrer" class="link-btn btn-fb">
+        <a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" rel="noopener noreferrer" class="link-btn btn-fb">
             <i class="fa-brands fa-facebook"></i> Facebook
-        </a></p>
+        </a>
     </div>
 
     <script>
@@ -240,6 +241,9 @@
             });
         }
     </script>
+
+</body>
+</html>
 
 </body>
 </html>
