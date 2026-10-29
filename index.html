@@ -10,17 +10,9 @@
 
     <style>
         body {
-            /* Configuración de la imagen de fondo */
-            background-image: url('Fondo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            
-            /* Oscurece un poco la imagen para que resalten las letras neón */
-            background-color: rgba(0, 0, 0, 0.6);
-            background-blend-mode: darken;
-
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
@@ -28,9 +20,30 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- VIDEO DE FONDO --- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Capa oscura semitransparente para que resalte el contenido */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
         }
 
         .profile-img {
@@ -49,7 +62,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- BOTÓN DESTACADO DE CORREO DE CONTACTO --- */
+        /* --- BOTÓN DE CORREO (FORZADO A GMAIL) --- */
         .email-contact-btn {
             display: inline-flex;
             align-items: center;
@@ -91,7 +104,7 @@
             max-width: 350px; 
         }
         
-        /* Estilo base de los botones */
+        /* Estilo base de los botones de redes */
         .link-btn {
             display: flex;
             align-items: center;
@@ -114,26 +127,21 @@
         }
 
         /* --- COLORES NEÓN PERSONALIZADOS --- */
-        
-        /* TikTok: Blanco Neón */
         .btn-tk {
             color: #ffffff;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* YouTube: Rojo Neón */
         .btn-yt {
             color: #ff0055;
             text-shadow: 0 0 5px rgba(255, 0, 85, 0.6);
         }
 
-        /* Instagram: Amarillo Neón */
         .btn-ig {
             color: #ffee00;
             text-shadow: 0 0 5px rgba(255, 238, 0, 0.6);
         }
 
-        /* Facebook: Azul Neón */
         .btn-fb {
             color: #00d2ff;
             text-shadow: 0 0 5px rgba(0, 210, 255, 0.6);
@@ -142,11 +150,20 @@
 </head>
 <body>
 
+    <!-- Video de fondo en bucle -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="Fondo.mp4" type="video/mp4">
+        Tu navegador no soporta videos de fondo.
+    </video>
+    
+    <!-- Capa oscura para contraste -->
+    <div class="bg-overlay"></div>
+
     <img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
     <h1>Shibboleth</h1>
 
-    <!-- Botón directo para contacto por correo -->
-    <a href="mailto:shibboleth4lbin4@gmail.com" class="email-contact-btn">
+    <!-- Botón directo que abre Gmail web con tu correo y asunto prellenado -->
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shibboleth4lbin4@gmail.com&su=Colaboracion%20o%20Contacto" target="_blank" rel="noopener noreferrer" class="email-contact-btn">
         <i class="fa-solid fa-envelope"></i> shibboleth4lbin4@gmail.com
     </a>
 
@@ -167,7 +184,7 @@
         </a>
 
         <!-- Instagram -->
-        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw=" target="_blank" rel="noopener noreferrer" class="link-btn btn-ig">
+        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw==" target="_blank" rel="noopener noreferrer" class="link-btn btn-ig">
             <i class="fa-brands fa-instagram"></i> Instagram
         </a>
 
@@ -177,5 +194,7 @@
         </a>
     </div>
 
+</body>
+</html>
 </body>
 </html>
