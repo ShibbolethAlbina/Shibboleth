@@ -1,241 +1,97 @@
- <!DOCTYPE html>
-
-<html lang="es">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Mis Redes</title>
-
-
-
-    <!-- Librería para los iconos -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-
-    <style>
-
+<style>
         body {
-
             /* Configuración de la imagen de fondo */
-
             background-image: url('Fondo.jpg');
-
             background-size: cover;
-
             background-position: center;
-
             background-repeat: no-repeat;
-
             background-attachment: fixed;
-
             
-
             /* Oscurece un poco la imagen para que resalten las letras neón */
-
             background-color: rgba(0, 0, 0, 0.6);
-
             background-blend-mode: darken;
 
-
-
             color: white;
-
             font-family: Arial, sans-serif;
-
             display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
+@@ -30,6 +19,22 @@
             min-height: 100vh;
-
             margin: 0;
-
             padding: 20px;
-
+            background-color: #000; /* Fondo negro por si acaso */
         }
 
-
+        /* --- VIDEO DE FONDO --- */
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Lo manda detrás de todos los elementos */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Cubre la pantalla sin deformarse */
+            filter: brightness(45%); /* Oscurece el video para que el neón resalte */
+        }
 
         .profile-img {
-
-            width: 90px;
-
-            height: 90px;
-
-            border-radius: 50%;
-
-            object-fit: cover;
-
-            margin-bottom: 15px;
-
+@@ -41,7 +46,12 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
-
         }
 
-
-
         h1 { font-size: 1.2rem; margin-bottom: 20px; }
+        h1 { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
 
         .links-container { width: 100%; max-width: 350px; }
 
-        
-
         /* Estilo base de los botones */
-
-        .link-btn {
-
-            display: flex;
-
+@@ -50,18 +60,19 @@
             align-items: center;
-
             justify-content: center;
-
             gap: 10px;
-
             background: rgba(31, 31, 31, 0.85);
-
+            background: rgba(20, 20, 20, 0.75); /* Cristal borroso sobre el video */
             text-align: center;
-
             padding: 14px;
-
             margin-bottom: 12px;
-
             border-radius: 8px;
-
             text-decoration: none;
-
             font-weight: bold;
-
             border: 1px solid #333;
-
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.2s;
-
             backdrop-filter: blur(4px);
-
+            backdrop-filter: blur(6px); /* Efecto cristal */
+            -webkit-backdrop-filter: blur(6px);
         }
-
         .link-btn:hover { background: rgba(51, 51, 51, 0.95); }
-
-
+        .link-btn:hover { background: rgba(40, 40, 40, 0.85); }
 
         /* --- COLORES NEÓN PERSONALIZADOS --- */
 
-        
-
-        /* TikTok: Blanco Neón */
-
-        .btn-tk {
-
-            color: #ffffff;
-
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
-
-        }
-
-
-
-        /* YouTube: Rojo Neón */
-
-        .btn-yt {
-
-            color: #ff0055;
-
-            text-shadow: 0 0 5px rgba(255, 0, 85, 0.6);
-
-        }
-
-
-
-        /* Instagram: Amarillo Neón */
-
-        .btn-ig {
-
-            color: #ffee00;
-
-            text-shadow: 0 0 5px rgba(255, 238, 0, 0.6);
-
-        }
-
-
-
-        /* Facebook: Azul Neón */
-
-        .btn-fb {
-
-            color: #00d2ff;
-
-            text-shadow: 0 0 5px rgba(0, 210, 255, 0.6);
-
-        }
-
-    </style>
-
+@@ -92,11 +103,16 @@
 </head>
-
 <body>
 
-
-
 <img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
-
 <h1>Shibboleth</h1>
+    <!-- Video de Fondo con poster de respaldo (Fondo.jpg) -->
+    <video autoplay loop muted playsinline poster="Fondo.jpg" id="bg-video">
+        <source src="Fondo.mp4" type="video/mp4">
+    </video>
 
-
+    <img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
+    <h1>Shibboleth</h1>
 
     <div class="links-container">
-
         <!-- TikTok (Link corregido con https://www.) -->
-
+        <!-- TikTok -->
         <a href="https://www.tiktok.com/@shibboleth117" target="_blank" rel="noopener noreferrer" class="link-btn btn-tk">
-
             <i class="fa-brands fa-tiktok"></i> TikTok
-
         </a>
-
-
-
-        <!-- YouTube -->
-
-        <a href="https://www.youtube.com/@Shibboleth-117" target="_blank" rel="noopener noreferrer" class="link-btn btn-yt">
-
-            <i class="fa-brands fa-youtube"></i> YouTube
-
-        </a>
-
-
-
-        <!-- Instagram -->
-
-        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw=" target="_blank" rel="noopener noreferrer" class="link-btn btn-ig">
-
-            <i class="fa-brands fa-instagram"></i> Instagram
-
-        </a>
-
-
-
-        <!-- Facebook -->
-
-        <a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" rel="noopener noreferrer" class="link-btn btn-fb">
-
-            <i class="fa-brands fa-facebook"></i> Facebook
-
-        </a>
-
-    </div>
-
-
-
-</body>
-
-</html> 
