@@ -1,28 +1,36 @@
-<style>
-        body {
-            /* Configuración de la imagen de fondo */
-            background-image: url('Fondo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            
-            /* Oscurece un poco la imagen para que resalten las letras neón */
-            background-color: rgba(0, 0, 0, 0.6);
-            background-blend-mode: darken;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Redes - Shibboleth</title>
 
+    <!-- Librería para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
-@@ -30,6 +19,22 @@
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
-            background-color: #000; /* Fondo negro por si acaso */
+            position: relative;
+            overflow-x: hidden;
+            background-color: #000; /* Fondo de respaldo por si el video tarda en cargar */
         }
 
         /* --- VIDEO DE FONDO --- */
-        #bg-video {
+        .bg-video {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -30,33 +38,107 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            z-index: -1; /* Lo manda detrás de todos los elementos */
+            z-index: -2;
             transform: translate(-50%, -50%);
-            object-fit: cover; /* Cubre la pantalla sin deformarse */
-            filter: brightness(45%); /* Oscurece el video para que el neón resalte */
+            object-fit: cover;
+        }
+
+        /* Capa oscura semitransparente sobre el video para que el texto resalte */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
         }
 
         .profile-img {
-@@ -41,7 +46,12 @@
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
-        h1 { font-size: 1.2rem; margin-bottom: 20px; }
         h1 { 
-            font-size: 1.2rem; 
-            margin-bottom: 20px; 
-            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+            font-size: 1.4rem; 
+            margin-bottom: 10px; 
+            letter-spacing: 1px;
         }
 
-        .links-container { width: 100%; max-width: 350px; }
+        /* --- CONTENEDOR DE CORREO (Copiar al toque) --- */
+        .email-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.35), rgba(0, 212, 255, 0.35));
+            border: 1px solid rgba(0, 212, 255, 0.6);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-        /* Estilo base de los botones */
-@@ -50,18 +60,19 @@
+        .email-box:hover {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(0, 212, 255, 0.6));
+            box-shadow: 0 0 18px rgba(0, 212, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Notificación emergente de "Copiado" */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            background: rgba(0, 212, 255, 0.9);
+            color: #000;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* --- DESCRIPCIÓN DE CONTENIDO --- */
+        .bio-description {
+            max-width: 380px;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #dddddd;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .links-container { 
+            width: 100%; 
+            max-width: 350px; 
+        }
+        
+        /* Estilo base de los botones de redes */
+        .link-btn {
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             background: rgba(31, 31, 31, 0.85);
-            background: rgba(20, 20, 20, 0.75); /* Cristal borroso sobre el video */
             text-align: center;
             padding: 14px;
             margin-bottom: 12px;
@@ -64,34 +146,100 @@
             text-decoration: none;
             font-weight: bold;
             border: 1px solid #333;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.2s;
             backdrop-filter: blur(4px);
-            backdrop-filter: blur(6px); /* Efecto cristal */
-            -webkit-backdrop-filter: blur(6px);
         }
-        .link-btn:hover { background: rgba(51, 51, 51, 0.95); }
-        .link-btn:hover { background: rgba(40, 40, 40, 0.85); }
+
+        .link-btn:hover { 
+            background: rgba(51, 51, 51, 0.95); 
+            transform: translateY(-2px);
+        }
 
         /* --- COLORES NEÓN PERSONALIZADOS --- */
+        .btn-tk {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
+        }
 
-@@ -92,11 +103,16 @@
+        .btn-yt {
+            color: #ff0055;
+            text-shadow: 0 0 5px rgba(255, 0, 85, 0.6);
+        }
+
+        .btn-ig {
+            color: #ffee00;
+            text-shadow: 0 0 5px rgba(255, 238, 0, 0.6);
+        }
+
+        .btn-fb {
+            color: #00d2ff;
+            text-shadow: 0 0 5px rgba(0, 210, 255, 0.6);
+        }
+    </style>
 </head>
 <body>
 
-<img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
-<h1>Shibboleth</h1>
-    <!-- Video de Fondo con poster de respaldo (Fondo.jpg) -->
-    <video autoplay loop muted playsinline poster="Fondo.jpg" id="bg-video">
+    <!-- Video de fondo en bucle (muted y playsinline son obligatorios para móviles) -->
+    <video autoplay muted loop playsinline class="bg-video">
         <source src="Fondo.mp4" type="video/mp4">
+        Tu navegador no soporta videos.
     </video>
+    
+    <!-- Capa oscura de contraste -->
+    <div class="bg-overlay"></div>
 
     <img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
     <h1>Shibboleth</h1>
 
+    <!-- Botón de correo con opción de copiar en un toque -->
+    <div class="email-box" onclick="copyEmail()">
+        <i class="fa-solid fa-envelope"></i>
+        <span>shibboleth4lbin4@gmail.com</span>
+        <i class="fa-regular fa-copy" style="font-size: 0.8rem; opacity: 0.8;"></i>
+    </div>
+
+    <!-- Notificación emergente al copiar -->
+    <div id="toast" class="toast">¡Correo copiado al portapapeles!</div>
+
+    <!-- Descripción del canal -->
+    <p class="bio-description">
+        Desastres naturales, misterios sin resolver y fenómenos que escapan a nuestro entendimiento.
+    </p>
+
     <div class="links-container">
-        <!-- TikTok (Link corregido con https://www.) -->
         <!-- TikTok -->
         <a href="https://www.tiktok.com/@shibboleth117" target="_blank" rel="noopener noreferrer" class="link-btn btn-tk">
             <i class="fa-brands fa-tiktok"></i> TikTok
         </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@Shibboleth-117" target="_blank" rel="noopener noreferrer" class="link-btn btn-yt">
+            <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/shibboleethh?igsh=MTRwbGFrdXVpbDljMw==&igsi=MTRwbGFrdXVpbDljMw==" target="_blank" rel="noopener noreferrer" class="link-btn btn-ig">
+            <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+
+        <!-- Facebook -->
+        <p><a href="https://www.facebook.com/share/14rNfuQdwzy/" target="_blank" rel="noopener noreferrer" class="link-btn btn-fb">
+            <i class="fa-brands fa-facebook"></i> Facebook
+        </a></p>
+    </div>
+
+    <script>
+        function copyEmail() {
+            const email = "shibboleth4lbin4@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const toast = document.getElementById("toast");
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
