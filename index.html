@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Redes</title>
+    <title>Mis Redes - Shibboleth</title>
 
     <!-- Librería para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         body {
+            /* Configuración de la imagen de fondo */
+            background-image: url('Fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+            /* Oscurece un poco la imagen para que resalten las letras neón */
+            background-color: rgba(0, 0, 0, 0.6);
+            background-blend-mode: darken;
+
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
@@ -19,40 +30,66 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            background-color: #000; /* Fondo negro por si acaso */
-        }
-
-        /* --- VIDEO DE FONDO --- */
-        #bg-video {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1; /* Lo manda detrás de todos los elementos */
-            transform: translate(-50%, -50%);
-            object-fit: cover; /* Cubre la pantalla sin deformarse */
-            filter: brightness(45%); /* Oscurece el video para que el neón resalte */
+            box-sizing: border-box;
         }
 
         .profile-img {
-            width: 90px;
-            height: 90px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         h1 { 
-            font-size: 1.2rem; 
-            margin-bottom: 20px; 
-            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+            font-size: 1.4rem; 
+            margin: 0 0 10px 0; 
+            letter-spacing: 1px;
         }
 
-        .links-container { width: 100%; max-width: 350px; }
+        /* --- BOTÓN DESTACADO DE CORREO DE CONTACTO --- */
+        .email-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 212, 255, 0.3));
+            border: 1px solid rgba(0, 212, 255, 0.6);
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .email-contact-btn:hover {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(0, 212, 255, 0.6));
+            box-shadow: 0 0 18px rgba(0, 212, 255, 0.6);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        /* --- DESCRIPCIÓN DE CONTENIDO --- */
+        .bio-description {
+            max-width: 380px;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #dddddd;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .links-container { 
+            width: 100%; 
+            max-width: 350px; 
+        }
         
         /* Estilo base de los botones */
         .link-btn {
@@ -60,19 +97,21 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: rgba(20, 20, 20, 0.75); /* Cristal borroso sobre el video */
+            background: rgba(31, 31, 31, 0.85);
             text-align: center;
             padding: 14px;
             margin-bottom: 12px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
             transition: 0.2s;
-            backdrop-filter: blur(6px); /* Efecto cristal */
-            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(4px);
         }
-        .link-btn:hover { background: rgba(40, 40, 40, 0.85); }
+        .link-btn:hover { 
+            background: rgba(51, 51, 51, 0.95); 
+            transform: translateY(-2px);
+        }
 
         /* --- COLORES NEÓN PERSONALIZADOS --- */
         
@@ -103,13 +142,18 @@
 </head>
 <body>
 
-    <!-- Video de Fondo con poster de respaldo (Fondo.jpg) -->
-    <video autoplay loop muted playsinline poster="Fondo.jpg" id="bg-video">
-        <source src="Fondo.mp4" type="video/mp4">
-    </video>
-
     <img src="perfil.jpg" class="profile-img" alt="Foto de perfil">
     <h1>Shibboleth</h1>
+
+    <!-- Botón directo para contacto por correo -->
+    <a href="mailto:shibboleth4lbin4@gmail.com" class="email-contact-btn">
+        <i class="fa-solid fa-envelope"></i> shibboleth4lbin4@gmail.com
+    </a>
+
+    <!-- Descripción del canal -->
+    <p class="bio-description">
+        Desastres naturales, misterios sin resolver y fenómenos que escapan a nuestro entendimiento.
+    </p>
 
     <div class="links-container">
         <!-- TikTok -->
